@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+    <link rel="stylesheet" href="view.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="https://www.apty.io/wp-content/uploads/2024/07/fev-icn.svg" alt="Logo" class="logo-img" />
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li>
+                    <p onclick="toggleTables()">Toggle Orders / Credits</p>
+                </li>
+                <li>
+                    <p>Invoice</p>
+                </li>
+                <li>
+                    <p>Contact</p>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="table-container">
+            <h1>Order Details</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Cost</th>
+                        <th>CID</th>
+                        <th>Credit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>$100</td>
+                        <td>C123</td>
+                        <td>Approved</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>$250</td>
+                        <td>C124</td>
+                        <td>Pending</td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>$300</td>
+                        <td>C125</td>
+                        <td>Denied</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-container">
+            <h1>Credit Status</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Credit Status</th>
+                        <th>Paid</th>
+                        <th>Due</th>
+                        <th>Percent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Approved</td>
+                        <td>$1,000</td>
+                        <td>$200</td>
+                        <td>83%</td>
+                    </tr>
+                    <tr>
+                        <td>Pending</td>
+                        <td>$500</td>
+                        <td>$500</td>
+                        <td>50%</td>
+                    </tr>
+                    <tr>
+                        <td>Denied</td>
+                        <td>$0</td>
+                        <td>$1,000</td>
+                        <td>0%</td>
+                    </tr>
+                </tbody>
+            </table>
+    </main>
+</body>
+
+</html>
