@@ -223,7 +223,11 @@
 					</div>
 					<div>
 						<label for="role">Role:</label>
-						<input type="text" id="role" />
+						<select id="options" name="options">
+							<option value="" disabled selected>Select an option</option>
+							<option value="option1">Business</option>
+							<option value="option2">Retail Buyer</option>
+						</select>
 					</div>
 					<div>
 						<label for="cost">Cost:</label>
@@ -246,7 +250,7 @@
 
 			<section class="modal-credits" style="display: none">
 				<h1>Credit Manipulation</h1>
-				<form onsubmit="return false">
+				<form onsubmit="save(event)">
 					<div>
 						<label for="cid">Customer ID:</label>
 						<input type="text" id="cid" />

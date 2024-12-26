@@ -60,3 +60,24 @@ window.onload = function () {
 	const filteredTable = document.querySelector(".filtered-orders");
 	filteredTable.style.display = "none";
 };
+
+function save(event) {
+	event.preventDefault();
+	const cid=document.getElementById("cid").value;
+	const amount=document.getElementById("amount").value;
+	const status=document.getElementById("status").value;
+	const due=document.getElementById("due").value;
+	let credits={cid,amount,status,due};
+	let storedCredits=JSON.parse(localStorage.getItem("credits"))||[];
+	const existIndex=storedCredits.findIndex(
+		(credit)=>credit.cid===cid
+	)
+	if(existIndex!==-1){
+		storedCredits[existIndex]=credits;
+	}
+	else{
+		storedCredits.push(credits);
+	}
+	localStorage.setItem("credits", JSON.stringify(storedCredits));
+	console.log(localStorage.getItem("credits"));
+}
