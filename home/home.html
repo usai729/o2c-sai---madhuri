@@ -3,7 +3,279 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>O2C</title>
+		<title>O2C | Sai & Madhuri</title>
+		<link rel="stylesheet" href="home.css" />
+		<link rel="stylesheet" href="../global.css" />
 	</head>
-	<body></body>
+	<body>
+		<header class="navbar">
+			<div class="logo">
+				<img
+					src="https://www.apty.io/wp-content/uploads/2024/07/fev-icn.svg"
+					alt="Logo"
+					class="logo-img"
+				/>
+			</div>
+			<nav class="nav-links">
+				<ul>
+					<li><p onclick="toggleTables()">Toggle Orders / Credits</p></li>
+					<li><a href="../invoice/invoice.html">Invoice</a></li>
+					<li><p>Contact</p></li>
+				</ul>
+			</nav>
+		</header>
+
+		<div class="container">
+			<div>
+				<section>
+					<div class="filters-container">
+						<div class="filter">
+							<label for="order-status">Order Status:</label>
+							<select id="order-status" name="order-status">
+								<option value="">Select Status</option>
+								<option value="placed">Placed</option>
+								<option value="confirmed">Confirmed</option>
+								<option value="processing">Processing</option>
+								<option value="dispatched">Dispatched/Shipped</option>
+								<option value="delivered">Delivered</option>
+								<option value="cancelled">Cancelled</option>
+							</select>
+						</div>
+						<div class="filter">
+							<label for="customer-role">Customer Role:</label>
+							<select id="customer-role" name="customer-role">
+								<option value="">Select Role</option>
+								<option value="business">Business</option>
+								<option value="individual">Individual</option>
+							</select>
+						</div>
+						<div class="filter">
+							<label for="payment-mode">Mode of Payment:</label>
+							<select id="payment-mode" name="payment-mode">
+								<option value="">Select Payment Mode</option>
+								<option value="paid">Paid</option>
+								<option value="cod">Cash on Delivery (COD)</option>
+								<option value="credit">Credit-based</option>
+							</select>
+						</div>
+						<div class="filter">
+							<label for="order-date">Order Date:</label>
+							<input type="date" id="order-date" name="order-date" />
+						</div>
+						<div class="filter">
+							<label for="invoice-status">Invoice Status:</label>
+							<select id="invoice-status" name="invoice-status">
+								<option value="">Select Invoice Status</option>
+								<option value="paid">Paid</option>
+								<option value="cod">Cash on Delivery (COD)</option>
+								<option value="credit">Credit-based</option>
+							</select>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<table class="orders-table">
+						<thead>
+							<tr>
+								<th>Sl No</th>
+								<th>Order ID</th>
+								<th>Customer ID</th>
+								<th>Role</th>
+								<th>Cost</th>
+								<th>Mode of Payment</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>ORD12345</td>
+								<td>CUST001</td>
+								<td>Business</td>
+								<td>$500</td>
+								<td>Paid</td>
+								<td>
+									<a href="../view/view.html?id="><button>View</button></a
+									><button onclick="openOrderModal('ORD12345')">Edit</button>
+								</td>
+							</tr>
+						</tbody>
+						<caption>
+							Orders
+						</caption>
+					</table>
+
+					<table class="credits-table" style="display: none">
+						<thead>
+							<tr>
+								<th>Credit Amount</th>
+								<th>Customer ID</th>
+								<th>Paid Amount</th>
+								<th>Status</th>
+								<th>Due Date</th>
+								<th>Percentage Fulfilled</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>$500</td>
+								<td>CUST001</td>
+								<td>$250</td>
+								<td>Pending</td>
+								<td>2024-12-31</td>
+								<td>50%</td>
+								<td>
+									<a href="../view/view.html?id="><button>View</button></a>
+									<button onclick="openCreditModal('CUST001')">Edit</button>
+								</td>
+							</tr>
+						</tbody>
+						<caption>
+							Credits
+						</caption>
+					</table>
+				</section>
+			</div>
+
+			<section class="dashboard-filtered">
+				<button onclick="toggleDashboard()">
+					Toggle Dashboard/Filtered Data
+				</button>
+			</section>
+
+			<section>
+				<table class="filtered-orders" style="display: none">
+					<thead>
+						<tr>
+							<th>Credit Amount</th>
+							<th>Customer ID</th>
+							<th>Paid Amount</th>
+							<th>Status</th>
+							<th>Due Date</th>
+							<th>Percentage Fulfilled</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$500</td>
+							<td>CUST001</td>
+							<td>$250</td>
+							<td>Pending</td>
+							<td>2024-12-31</td>
+							<td>50%</td>
+							<td>
+								<a href="../view/view.html?id=">
+									<button>View</button>
+								</a>
+								<button onclick="openOrderModal('ORD12345')">Edit</button>
+							</td>
+						</tr>
+					</tbody>
+					<caption>
+						Filtered
+					</caption>
+				</table>
+
+				<div class="dashboard">
+					<h1>Dashboard</h1>
+
+					<div class="cards">
+						<div class="card">
+							<h3>Orders Pending</h3>
+							<p>20%</p>
+						</div>
+						<div class="card">
+							<h3>Customer Segregation</h3>
+							<p>60% Businesses<br />40% Retail Buyers</p>
+						</div>
+						<div class="card">
+							<h3>Credit Dues</h3>
+							<p>5% Customers</p>
+						</div>
+						<div class="card">
+							<h3>New vs Old Order Ratio</h3>
+							<p>
+								New Orders: 60%<br />
+								Old Orders: 40%
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="modal-orders" style="display: none">
+				<h1>Order Manipulation</h1>
+				<form onsubmit="return false">
+					<div>
+						<label for="order-id">Order ID:</label>
+						<input type="text" id="order-id" />
+					</div>
+					<div>
+						<label for="pid">PID:</label>
+						<input type="text" id="pid" />
+					</div>
+					<div>
+						<label for="cid">CID:</label>
+						<input type="text" id="cid" />
+					</div>
+					<div>
+						<label for="role">Role:</label>
+						<input type="text" id="role" />
+					</div>
+					<div>
+						<label for="cost">Cost:</label>
+						<input type="text" id="cost" />
+					</div>
+					<div>
+						<label for="modeofpayment">Mode of Payment:</label>
+						<select id="modeofpayment">
+							<option value="paid">Paid</option>
+							<option value="cod">Cash on Delivery (COD)</option>
+							<option value="credit">Credit-based</option>
+						</select>
+					</div>
+					<div class="submit-save">
+						<button type="submit">Save</button>
+						<button type="button" onclick="closeModal('orders')">Close</button>
+					</div>
+				</form>
+			</section>
+
+			<section class="modal-credits" style="display: none">
+				<h1>Credit Manipulation</h1>
+				<form onsubmit="return false">
+					<div>
+						<label for="cid">Customer ID:</label>
+						<input type="text" id="cid" />
+					</div>
+					<div>
+						<label for="amount">Amount:</label>
+						<input type="number" id="amount" />
+					</div>
+					<div>
+						<label for="status">Status:</label>
+						<select id="status">
+							<option value="pending">Pending</option>
+							<option value="paid">Paid</option>
+							<option value="partial">Partially Paid</option>
+						</select>
+					</div>
+					<div>
+						<label for="due">Due Date:</label>
+						<input type="date" id="due" />
+					</div>
+
+					<div class="submit-save">
+						<button type="submit">Save</button>
+						<button type="button" onclick="closeModal('credits')">Close</button>
+					</div>
+				</form>
+			</section>
+		</div>
+
+		<script src="home.js"></script>
+	</body>
 </html>
