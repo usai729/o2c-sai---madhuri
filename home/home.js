@@ -61,21 +61,54 @@ window.onload = function () {
 	filteredTable.style.display = "none";
 };
 
+function saveOrders(event) {
+	event.preventDefault();
+
+	const orderId = document.getElementById("order-id").value;
+	const pid = document.getElementById("pid").value;
+	const cid = document.getElementById("cid").value;
+	const role = document.getElementById("role").value;
+	const cost = document.getElementById("cost").value;
+	const modeOfPayment = document.getElementById("modeofpayment").value;
+
+	let orders = {
+		orderId,
+		pid,
+		cid,
+		role,
+		cost,
+		modeOfPayment,
+	};
+
+	let storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+
+	const existingOrderIndex = storedOrders.findIndex(
+		(order) => order.orderId === orderId
+	);
+
+	if (existingOrderIndex !== -1) {
+		storedOrders[existingOrderIndex] = orders;
+	} else {
+		storedOrders.push(orders);
+	}
+
+	localStorage.setItem("orders", JSON.stringify(storedOrders));
+
+	console.log(localStorage.getItem("orders"));
+}
+
 function save(event) {
 	event.preventDefault();
-	const cid=document.getElementById("cid").value;
-	const amount=document.getElementById("amount").value;
-	const status=document.getElementById("status").value;
-	const due=document.getElementById("due").value;
-	let credits={cid,amount,status,due};
-	let storedCredits=JSON.parse(localStorage.getItem("credits"))||[];
-	const existIndex=storedCredits.findIndex(
-		(credit)=>credit.cid===cid
-	)
-	if(existIndex!==-1){
-		storedCredits[existIndex]=credits;
-	}
-	else{
+	const cid = document.getElementById("cid").value;
+	const amount = document.getElementById("amount").value;
+	const status = document.getElementById("status").value;
+	const due = document.getElementById("due").value;
+	let credits = { cid, amount, status, due };
+	let storedCredits = JSON.parse(localStorage.getItem("credits")) || [];
+	const existIndex = storedCredits.findIndex((credit) => credit.cid === cid);
+	if (existIndex !== -1) {
+		storedCredits[existIndex] = credits;
+	} else {
 		storedCredits.push(credits);
 	}
 	localStorage.setItem("credits", JSON.stringify(storedCredits));

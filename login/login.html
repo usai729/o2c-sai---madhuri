@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
-    <div class="login-container">
-        <img src="https://th.bing.com/th/id/R.ab652e76aca2bb1596aceebcf51c0a29?rik=4tKBsuKGse6rSw&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-lock-picture-lock-2-icon-1600.png&ehk=5bUCk2gxyyG7Z0k6n3F0YYIRoTDMm5tewPGXcT5Ukmw%3d&risl=&pid=ImgRaw&r=0">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <div class="remember">
-                <div class="checkbox"><input type="checkbox" id="rememberMe"></div><span> Remember me</span>
-            </div>
-            <button type="submit" class="login-btn">Login</button>
-        </form>
-    </div>
-    <script src="login.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login Page</title>
+		<link rel="stylesheet" href="login.css" />
+		<link rel="stylesheet" href="../global.css" />
+	</head>
+	<body>
+		<div class="login-container">
+			<img
+				src="https://th.bing.com/th/id/R.ab652e76aca2bb1596aceebcf51c0a29?rik=4tKBsuKGse6rSw&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-lock-picture-lock-2-icon-1600.png&ehk=5bUCk2gxyyG7Z0k6n3F0YYIRoTDMm5tewPGXcT5Ukmw%3d&risl=&pid=ImgRaw&r=0"
+			/>
+			<h1>Login</h1>
+			<form id="loginForm" onsubmit="login(event)">
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input
+						type="text"
+						id="username"
+						name="username"
+						placeholder="Enter your username"
+						required
+					/>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						placeholder="Enter your password"
+						required
+					/>
+				</div>
+				<div class="remember">
+					<div class="checkbox"><input type="checkbox" id="rememberMe" /></div>
+					<span> Remember me</span>
+				</div>
+				<button type="submit" class="login-btn">Login</button>
+			</form>
+		</div>
+		<script src="login.js"></script>
+	</body>
 </html>

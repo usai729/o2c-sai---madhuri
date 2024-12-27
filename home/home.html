@@ -208,18 +208,18 @@
 
 			<section class="modal-orders" style="display: none">
 				<h1>Order Manipulation</h1>
-				<form onsubmit="return false">
+				<form onsubmit="saveOrders(event)">
 					<div>
 						<label for="order-id">Order ID:</label>
-						<input type="text" id="order-id" />
+						<input type="text" id="order-id" value="ORD12345" />
 					</div>
 					<div>
 						<label for="pid">PID:</label>
-						<input type="text" id="pid" />
+						<input type="text" id="pid" value="P001" />
 					</div>
 					<div>
 						<label for="cid">CID:</label>
-						<input type="text" id="cid" />
+						<input type="text" id="cid" value="CUST001" />
 					</div>
 					<div>
 						<label for="role">Role:</label>
@@ -231,12 +231,12 @@
 					</div>
 					<div>
 						<label for="cost">Cost:</label>
-						<input type="text" id="cost" />
+						<input type="text" id="cost" value="$500" />
 					</div>
 					<div>
 						<label for="modeofpayment">Mode of Payment:</label>
 						<select id="modeofpayment">
-							<option value="paid">Paid</option>
+							<option value="paid" selected>Paid</option>
 							<option value="cod">Cash on Delivery (COD)</option>
 							<option value="credit">Credit-based</option>
 						</select>
