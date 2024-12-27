@@ -96,27 +96,22 @@ function saveOrders(event) {
 
 	localStorage.setItem("orders", JSON.stringify(storedOrders));
 
-	get_ordersAndCredits(); // Reload orders after saving
+	get_ordersAndCredits();
 	closeModal("orders");
 }
 
 function save(event) {
 	event.preventDefault();
-	const cid = document.getElementById("cid").value;
-	const amount = document.getElementById("amount").value;
-	const status = document.getElementById("status").value;
-	const due = document.getElementById("due").value;
+	const cid = document.getElementById("cid_credits").value;
+	const amount = document.getElementById("amount_credits").value;
+	const status = document.getElementById("status_credits").value;
+	const due = document.getElementById("due_credits").value;
 
 	let credits = { cid, amount, status, due };
 
 	let storedCredits = JSON.parse(localStorage.getItem("credits")) || [];
-	const existIndex = storedCredits.findIndex((credit) => credit.cid === cid);
 
-	if (existIndex !== -1) {
-		storedCredits[existIndex] = credits;
-	} else {
-		storedCredits.push(credits);
-	}
+	storedCredits.push(credits);
 
 	localStorage.setItem("credits", JSON.stringify(storedCredits));
 
@@ -146,9 +141,7 @@ function get_ordersAndCredits() {
             <td>
                 <button onclick="openOrderModal('${order.orderId}')">Edit</button>
                 <a href='../view/view.html?cid=${order.cid}&oid=${order.orderId}'>
-                    <Button>
-                        View
-                    </Button>
+                    <Button>View</Button>
                 </a>
             </td>
         `;
@@ -158,11 +151,17 @@ function get_ordersAndCredits() {
 	storedCredits.forEach((credit) => {
 		const row = document.createElement("tr");
 		row.innerHTML = `
+			<td>$${credit.amount}</td>
             <td>${credit.cid}</td>
-            <td>${credit.amount}</td>
+            <td>$${credit.paidAmount || 0}</td>  <!-- Show paid amount -->
             <td>${credit.status}</td>
             <td>${credit.due}</td>
-            <td><button onclick="openCreditModal('${credit.cid}')">Edit</button></td>
+            <td>${
+							credit.percentageFulfilled || 0
+						}%</td>  <!-- Show percentage fulfilled -->
+            <td><button onclick="openCreditModal('${
+							credit.cid
+						}')">Edit</button></td>
         `;
 		creditsTableBody.appendChild(row);
 	});

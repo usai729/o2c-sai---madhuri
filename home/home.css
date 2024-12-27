@@ -278,7 +278,6 @@ button {
 
 .modal-orders,
 .modal-credits {
-	margin-top: 100px;
 	position: absolute;
 	padding: 30px;
 	background-color: white;
@@ -294,6 +293,8 @@ button {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	max-height: 50vh;
+	overflow-y: auto;
 }
 
 .modal-orders form,

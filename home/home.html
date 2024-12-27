@@ -18,6 +18,12 @@
 			</div>
 			<nav class="nav-links">
 				<ul>
+					<li>
+						<button onclick="openOrderModal('')">CU Orders</button>
+					</li>
+					<li>
+						<button onclick="openCreditModal('')">CU Credits</button>
+					</li>
 					<li><p onclick="toggleTables()">Toggle Orders / Credits</p></li>
 					<li><a href="../invoice/invoice.html">Invoice</a></li>
 					<li><p>Contact</p></li>
@@ -70,7 +76,7 @@
 						<thead>
 							<tr>
 								<th>Sl No</th>
-								<th>Order ID</th>
+								<th>Product ID</th>
 								<th>Customer ID</th>
 								<th>Role</th>
 								<th>Cost</th>
@@ -251,15 +257,15 @@
 				<form onsubmit="save(event)">
 					<div>
 						<label for="cid">Customer ID:</label>
-						<input type="text" id="cid" />
+						<input type="text" id="cid_credits" />
 					</div>
 					<div>
 						<label for="amount">Amount:</label>
-						<input type="number" id="amount" />
+						<input type="number" id="amount_credits" />
 					</div>
 					<div>
 						<label for="status">Status:</label>
-						<select id="status">
+						<select id="status_credits">
 							<option value="pending">Pending</option>
 							<option value="paid">Paid</option>
 							<option value="partial">Partially Paid</option>
@@ -267,7 +273,7 @@
 					</div>
 					<div>
 						<label for="due">Due Date:</label>
-						<input type="date" id="due" />
+						<input type="date" id="due_credits" />
 					</div>
 
 					<div class="submit-save">
