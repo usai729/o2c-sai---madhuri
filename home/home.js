@@ -102,20 +102,31 @@ function saveOrders(event) {
 
 function save(event) {
 	event.preventDefault();
+
 	const cid = document.getElementById("cid_credits").value;
 	const amount = document.getElementById("amount_credits").value;
+	const paidAmount = document.getElementById("paidAmount_credits").value;
 	const status = document.getElementById("status_credits").value;
 	const due = document.getElementById("due_credits").value;
 
-	let credits = { cid, amount, status, due };
+	let credits = { cid, amount, paidAmount, status, due };
 
 	let storedCredits = JSON.parse(localStorage.getItem("credits")) || [];
 
-	storedCredits.push(credits);
+	const existingCreditIndex = storedCredits.findIndex(
+		(credit) => credit.cid === cid
+	);
+
+	if (existingCreditIndex !== -1) {
+		storedCredits[existingCreditIndex] = credits;
+	} else {
+		storedCredits.push(credits);
+	}
 
 	localStorage.setItem("credits", JSON.stringify(storedCredits));
 
 	get_ordersAndCredits();
+
 	closeModal("credits");
 }
 
@@ -156,9 +167,9 @@ function get_ordersAndCredits() {
             <td>$${credit.paidAmount || 0}</td>  <!-- Show paid amount -->
             <td>${credit.status}</td>
             <td>${credit.due}</td>
-            <td>${
-							credit.percentageFulfilled || 0
-						}%</td>  <!-- Show percentage fulfilled -->
+            <td>${((credit.paidAmount / credit.amount) * 100).toFixed(
+							2
+						)}%</td>  <!-- Show percentage fulfilled -->
             <td><button onclick="openCreditModal('${
 							credit.cid
 						}')">Edit</button></td>
@@ -206,8 +217,12 @@ function displayFilteredData(filteredOrders, filteredCredits) {
             <td>${order.cid || "N/A"}</td>
             <td>${order.paidAmount || "N/A"}</td>
             <td>${order.status || "N/A"}</td>
-            <td>${order.dueDate || "N/A"}</td>
-            <td>${order.percentageFulfilled || "0%"}%</td>
+            <td>${order.orderDate || "N/A"}</td>
+            <td>${
+							order.paidAmount && order.cost
+								? ((order.paidAmount / order.cost) * 100).toFixed(2)
+								: "0.00"
+						}%</td>
             <td>
                 <a href="../view/view.html?oid=${order.orderId}&cid=${
 			order.cid
@@ -225,12 +240,16 @@ function displayFilteredData(filteredOrders, filteredCredits) {
 	filteredCredits.forEach((credit) => {
 		const row = document.createElement("tr");
 		row.innerHTML = `
-            <td>${credit.amount || "N/A"}</td>
+            <td>$${credit.amount || "N/A"}</td>
             <td>${credit.cid || "N/A"}</td>
-            <td>${credit.paidAmount || "N/A"}</td>
+            <td>$${credit.paidAmount || "N/A"}</td>
             <td>${credit.status || "N/A"}</td>
-            <td>${credit.due || "N/A"}</td>
-            <td>${credit.percentageFulfilled || "0%"}%</td>
+            <td>$${credit.due || "N/A"}</td>
+            <td>${
+							credit.paidAmount && credit.amount
+								? ((credit.paidAmount / credit.amount) * 100).toFixed(2)
+								: "0.00"
+						}%</td>
             <td>
                 <a href="../view/view.html?id=${credit.cid}">
                     <button>View</button>
@@ -302,6 +321,188 @@ function updateDashboard() {
 document
 	.querySelector(".filters-container")
 	.addEventListener("change", applyFilters);
+
+// Larger sample data for orders
+let largerSampleOrders = [
+	{
+		orderId: "ORD001",
+		pid: "PID123",
+		cid: "CID001",
+		role: "Business",
+		cost: "200",
+		modeOfPayment: "Credit",
+		status: "placed",
+		orderDate: "2024-12-10",
+	},
+	{
+		orderId: "ORD002",
+		pid: "PID124",
+		cid: "CID002",
+		role: "Retail",
+		cost: "150",
+		modeOfPayment: "Cash",
+		status: "completed",
+		orderDate: "2024-11-25",
+	},
+	{
+		orderId: "ORD003",
+		pid: "PID125",
+		cid: "CID003",
+		role: "Business",
+		cost: "500",
+		modeOfPayment: "Credit",
+		status: "placed",
+		orderDate: "2024-12-15",
+	},
+	{
+		orderId: "ORD004",
+		pid: "PID126",
+		cid: "CID004",
+		role: "Retail",
+		cost: "300",
+		modeOfPayment: "Cash",
+		status: "completed",
+		orderDate: "2024-10-12",
+	},
+	{
+		orderId: "ORD005",
+		pid: "PID127",
+		cid: "CID005",
+		role: "Business",
+		cost: "250",
+		modeOfPayment: "Online Transfer",
+		status: "placed",
+		orderDate: "2024-12-05",
+	},
+	{
+		orderId: "ORD006",
+		pid: "PID128",
+		cid: "CID006",
+		role: "Retail",
+		cost: "120",
+		modeOfPayment: "Cash",
+		status: "completed",
+		orderDate: "2024-11-01",
+	},
+	{
+		orderId: "ORD007",
+		pid: "PID129",
+		cid: "CID007",
+		role: "Business",
+		cost: "800",
+		modeOfPayment: "Cheque",
+		status: "placed",
+		orderDate: "2024-12-18",
+	},
+	{
+		orderId: "ORD008",
+		pid: "PID130",
+		cid: "CID008",
+		role: "Retail",
+		cost: "400",
+		modeOfPayment: "Credit",
+		status: "completed",
+		orderDate: "2024-08-30",
+	},
+	{
+		orderId: "ORD009",
+		pid: "PID131",
+		cid: "CID009",
+		role: "Business",
+		cost: "600",
+		modeOfPayment: "Cash",
+		status: "placed",
+		orderDate: "2024-12-20",
+	},
+	{
+		orderId: "ORD010",
+		pid: "PID132",
+		cid: "CID010",
+		role: "Retail",
+		cost: "220",
+		modeOfPayment: "Online Transfer",
+		status: "completed",
+		orderDate: "2024-07-15",
+	},
+];
+
+// Larger sample data for credits
+let largerSampleCredits = [
+	{
+		cid: "CID001",
+		amount: "500",
+		paidAmount: "200",
+		status: "partial",
+		due: "300",
+	},
+	{
+		cid: "CID002",
+		amount: "1000",
+		paidAmount: "1000",
+		status: "completed",
+		due: "0",
+	},
+	{
+		cid: "CID003",
+		amount: "750",
+		paidAmount: "500",
+		status: "partial",
+		due: "250",
+	},
+	{
+		cid: "CID004",
+		amount: "1200",
+		paidAmount: "1200",
+		status: "completed",
+		due: "0",
+	},
+	{
+		cid: "CID005",
+		amount: "600",
+		paidAmount: "400",
+		status: "partial",
+		due: "200",
+	},
+	{
+		cid: "CID006",
+		amount: "350",
+		paidAmount: "350",
+		status: "completed",
+		due: "0",
+	},
+	{
+		cid: "CID007",
+		amount: "1000",
+		paidAmount: "500",
+		status: "partial",
+		due: "500",
+	},
+	{
+		cid: "CID008",
+		amount: "450",
+		paidAmount: "450",
+		status: "completed",
+		due: "0",
+	},
+	{
+		cid: "CID009",
+		amount: "800",
+		paidAmount: "0",
+		status: "pending",
+		due: "800",
+	},
+	{
+		cid: "CID010",
+		amount: "1500",
+		paidAmount: "1500",
+		status: "completed",
+		due: "0",
+	},
+];
+
+// Store the data in localStorage
+localStorage.setItem("orders", JSON.stringify(largerSampleOrders));
+localStorage.setItem("credits", JSON.stringify(largerSampleCredits));
 
 window.onload = function () {
 	get_ordersAndCredits();

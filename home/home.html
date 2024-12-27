@@ -71,133 +71,137 @@
 					</div>
 				</section>
 
-				<section>
-					<table class="orders-table">
-						<thead>
-							<tr>
-								<th>Sl No</th>
-								<th>Product ID</th>
-								<th>Customer ID</th>
-								<th>Role</th>
-								<th>Cost</th>
-								<th>Mode of Payment</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>ORD12345</td>
-								<td>CUST001</td>
-								<td>Business</td>
-								<td>$500</td>
-								<td>Paid</td>
-								<td>
-									<a href="../view/view.html?id="><button>View</button></a
-									><button onclick="openOrderModal('ORD12345')">Edit</button>
-								</td>
-							</tr>
-						</tbody>
-						<caption>
-							Orders
-						</caption>
-					</table>
+				<div class="tables">
+					<section>
+						<table class="orders-table">
+							<thead>
+								<tr>
+									<th>Sl No</th>
+									<th>Product ID</th>
+									<th>Customer ID</th>
+									<th>Role</th>
+									<th>Cost</th>
+									<th>Mode of Payment</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>ORD12345</td>
+									<td>CUST001</td>
+									<td>Business</td>
+									<td>$500</td>
+									<td>Paid</td>
+									<td>
+										<a href="../view/view.html?id="><button>View</button></a
+										><button onclick="openOrderModal('ORD12345')">Edit</button>
+									</td>
+								</tr>
+							</tbody>
+							<caption>
+								Orders
+							</caption>
+						</table>
 
-					<table class="credits-table" style="display: none">
-						<thead>
-							<tr>
-								<th>Credit Amount</th>
-								<th>Customer ID</th>
-								<th>Paid Amount</th>
-								<th>Status</th>
-								<th>Due Date</th>
-								<th>Percentage Fulfilled</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>$500</td>
-								<td>CUST001</td>
-								<td>$250</td>
-								<td>Pending</td>
-								<td>2024-12-31</td>
-								<td>50%</td>
-								<td>
-									<a href="../view/view.html?id="><button>View</button></a>
-									<button onclick="openCreditModal('CUST001')">Edit</button>
-								</td>
-							</tr>
-						</tbody>
-						<caption>
-							Credits
-						</caption>
-					</table>
-				</section>
-			</div>
+						<table class="credits-table" style="display: none">
+							<thead>
+								<tr>
+									<th>Credit Amount</th>
+									<th>Customer ID</th>
+									<th>Paid Amount</th>
+									<th>Status</th>
+									<th>Due Date</th>
+									<th>Percentage Fulfilled</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>$500</td>
+									<td>CUST001</td>
+									<td>$250</td>
+									<td>Pending</td>
+									<td>2024-12-31</td>
+									<td>50%</td>
+									<td>
+										<a href="../view/view.html?id="><button>View</button></a>
+										<button onclick="openCreditModal('CUST001')">Edit</button>
+									</td>
+								</tr>
+							</tbody>
+							<caption>
+								Credits
+							</caption>
+						</table>
+					</section>
 
-			<section class="dashboard-filtered">
-				<button onclick="toggleDashboard()">
-					Toggle Dashboard/Filtered Data
-				</button>
-			</section>
+					<section>
+						<section class="dashboard-filtered">
+							<button onclick="toggleDashboard()">
+								Toggle Dashboard/Filtered Data
+							</button>
+						</section>
 
-			<section>
-				<table class="filtered-orders" style="display: none">
-					<thead>
-						<tr>
-							<th>Credit Amount</th>
-							<th>Customer ID</th>
-							<th>Paid Amount</th>
-							<th>Status</th>
-							<th>Due Date</th>
-							<th>Percentage Fulfilled</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>$500</td>
-							<td>CUST001</td>
-							<td>$250</td>
-							<td>Pending</td>
-							<td>2024-12-31</td>
-							<td>50%</td>
-							<td>
-								<a href="../view/view.html?id=">
-									<button>View</button>
-								</a>
-								<button onclick="openOrderModal('ORD12345')">Edit</button>
-							</td>
-						</tr>
-					</tbody>
-					<caption>
-						Filtered
-					</caption>
-				</table>
+						<section>
+							<table class="filtered-orders" style="display: none">
+								<thead>
+									<tr>
+										<th>Credit Amount</th>
+										<th>Customer ID</th>
+										<th>Paid Amount</th>
+										<th>Status</th>
+										<th>Due Date</th>
+										<th>Percentage Fulfilled</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>$500</td>
+										<td>CUST001</td>
+										<td>$250</td>
+										<td>Pending</td>
+										<td>2024-12-31</td>
+										<td>50%</td>
+										<td>
+											<a href="../view/view.html?id=">
+												<button>View</button>
+											</a>
+											<button onclick="openOrderModal('ORD12345')">Edit</button>
+										</td>
+									</tr>
+								</tbody>
+								<caption>
+									Filtered
+								</caption>
+							</table>
 
-				<div class="dashboard">
-					<!-- <h1>Dashboard</h1> -->
-					<div class="cards">
-						<div class="card">
-							<h3>Orders Pending</h3>
-							<p id="orders-pending">Loading...</p>
-						</div>
-						<div class="card">
-							<h3>Customer Segregation</h3>
-							<p id="customer-segregation">Loading...</p>
-						</div>
-						<div class="card">
-							<h3>Credit Dues</h3>
-							<p id="credit-dues">Loading...</p>
-						</div>
-						<div class="card">
-							<h3>New vs Old Order Ratio</h3>
-							<p id="new-vs-old">Loading...</p>
-						</div>
-					</div>
+							<div class="dashboard">
+								<!-- <h1>Dashboard</h1> -->
+								<div class="cards">
+									<div class="card">
+										<h3>Orders Pending</h3>
+										<p id="orders-pending">Loading...</p>
+									</div>
+									<div class="card">
+										<h3>Customer Segregation</h3>
+										<p id="customer-segregation">Loading...</p>
+									</div>
+									<div class="card">
+										<h3>Credit Dues</h3>
+										<p id="credit-dues">Loading...</p>
+									</div>
+									<div class="card">
+										<h3>New vs Old Order Ratio</h3>
+										<p id="new-vs-old">Loading...</p>
+									</div>
+								</div>
+							</div>
+						</section>
+					</section>
 				</div>
-			</section>
+			</div>
 
 			<section class="modal-orders" style="display: none">
 				<h1>Order Manipulation</h1>
@@ -262,6 +266,10 @@
 					<div>
 						<label for="amount">Amount:</label>
 						<input type="number" id="amount_credits" />
+					</div>
+					<div>
+						<label for="paidAmount">Paid Amount:</label>
+						<input type="number" id="paidAmount_credits" />
 					</div>
 					<div>
 						<label for="status">Status:</label>

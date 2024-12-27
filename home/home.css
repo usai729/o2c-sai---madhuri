@@ -12,6 +12,7 @@
 	height: max-content;
 	width: 100%;
 	border-radius: 10px;
+	background-color: white;
 	display: flex;
 	justify-content: space-around;
 }
@@ -162,6 +163,19 @@ caption {
 	color: var(--secondary-color);
 }
 
+.tables {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+}
+
+@media (max-width: 1745px) {
+	.tables {
+		flex-direction: column;
+		justify-content: center;
+	}
+}
+
 /* Filtered Table */
 .filtered-orders {
 	width: 100%;
@@ -220,7 +234,7 @@ caption {
 	color: var(--button-text-color);
 	padding: 20px;
 	border-radius: 10px;
-	box-shadow: var(--shadow-color) 0px 4px 8px;
+	box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 	text-align: center;
 	margin-top: 20px;
 	display: flex;
