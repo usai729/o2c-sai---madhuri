@@ -98,6 +98,7 @@ function saveOrders(event) {
 
 	get_ordersAndCredits();
 	closeModal("orders");
+	updateDashboard();
 }
 
 function save(event) {
@@ -126,8 +127,8 @@ function save(event) {
 	localStorage.setItem("credits", JSON.stringify(storedCredits));
 
 	get_ordersAndCredits();
-
 	closeModal("credits");
+	updateDashboard();
 }
 
 function get_ordersAndCredits() {
@@ -299,7 +300,6 @@ document
 	.querySelector(".filters-container")
 	.addEventListener("change", applyFilters);
 
-// Larger sample data for orders
 let largerSampleOrders = [
 	{
 		orderId: "ORD001",
