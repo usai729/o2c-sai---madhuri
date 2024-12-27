@@ -236,29 +236,6 @@ function displayFilteredData(filteredOrders, filteredCredits) {
         `;
 		filteredTableBody.appendChild(row);
 	});
-
-	filteredCredits.forEach((credit) => {
-		const row = document.createElement("tr");
-		row.innerHTML = `
-            <td>$${credit.amount || "N/A"}</td>
-            <td>${credit.cid || "N/A"}</td>
-            <td>$${credit.paidAmount || "N/A"}</td>
-            <td>${credit.status || "N/A"}</td>
-            <td>$${credit.due || "N/A"}</td>
-            <td>${
-							credit.paidAmount && credit.amount
-								? ((credit.paidAmount / credit.amount) * 100).toFixed(2)
-								: "0.00"
-						}%</td>
-            <td>
-                <a href="../view/view.html?id=${credit.cid}">
-                    <button>View</button>
-                </a>
-                <button onclick="openCreditModal('${credit.cid}')">Edit</button>
-            </td>
-        `;
-		filteredTableBody.appendChild(row);
-	});
 }
 
 function updateDashboard() {
