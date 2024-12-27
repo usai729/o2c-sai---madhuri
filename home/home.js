@@ -103,14 +103,65 @@ function save(event) {
 	const amount = document.getElementById("amount").value;
 	const status = document.getElementById("status").value;
 	const due = document.getElementById("due").value;
+
 	let credits = { cid, amount, status, due };
+
 	let storedCredits = JSON.parse(localStorage.getItem("credits")) || [];
 	const existIndex = storedCredits.findIndex((credit) => credit.cid === cid);
+
 	if (existIndex !== -1) {
 		storedCredits[existIndex] = credits;
 	} else {
 		storedCredits.push(credits);
 	}
+
 	localStorage.setItem("credits", JSON.stringify(storedCredits));
-	console.log(localStorage.getItem("credits"));
 }
+
+function get_ordersAndCredits() {
+	const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+	const storedCredits = JSON.parse(localStorage.getItem("credits")) || [];
+
+	const ordersTableBody = document.querySelector(".orders-table tbody");
+	const creditsTableBody = document.querySelector(".credits-table tbody");
+
+	ordersTableBody.innerHTML = "";
+	creditsTableBody.innerHTML = "";
+
+	storedOrders.forEach((order) => {
+		const row = document.createElement("tr");
+		row.innerHTML = `
+            <td>${order.orderId}</td>
+            <td>${order.pid}</td>
+            <td>${order.cid}</td>
+            <td>${order.role}</td>
+            <td>${order.cost}</td>
+            <td>${order.modeOfPayment}</td>
+            <td>
+                <button onclick="openOrderModal('${order.orderId}')">Edit</button>
+                <a href='../view/view.html'>
+                    <Button>
+                        View
+                    </Button>
+                </a>
+            </td>
+        `;
+		ordersTableBody.appendChild(row);
+	});
+
+	storedCredits.forEach((credit) => {
+		const row = document.createElement("tr");
+		row.innerHTML = `
+            <td>${credit.cid}</td>
+            <td>${credit.amount}</td>
+            <td>${credit.status}</td>
+            <td>${credit.due}</td>
+            <td><button onclick="openCreditModal('${credit.cid}')">Edit</button></td>
+        `;
+		creditsTableBody.appendChild(row);
+	});
+}
+
+window.onload = function () {
+	get_ordersAndCredits();
+};
