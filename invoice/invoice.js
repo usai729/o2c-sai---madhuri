@@ -68,9 +68,9 @@ function generateInvoice() {
 		}
 	}
 
-	document.getElementById("price").value = parseInt(
-		orderDetails.cost.split("$")[1]
-	);
+	console.log(orderDetails.cost);
+
+	document.getElementById("price").value = orderDetails.cost;
 	document.getElementById("credit").value = creditDetails
 		? creditDetails.amount
 		: 0;
