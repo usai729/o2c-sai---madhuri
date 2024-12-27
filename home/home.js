@@ -96,6 +96,35 @@ function saveOrders(event) {
 
 	localStorage.setItem("orders", JSON.stringify(storedOrders));
 
+	if (role === "Business") {
+		let storedCredits = JSON.parse(localStorage.getItem("credits")) || [];
+
+		const existingCreditIndex = storedCredits.findIndex(
+			(credit) => credit.cid === cid
+		);
+
+		const amount = cost;
+		const paidAmount = 0;
+		const due = cost;
+		const creditStatus = "Pending";
+
+		let credit = {
+			cid,
+			amount,
+			paidAmount,
+			status: creditStatus,
+			due,
+		};
+
+		if (existingCreditIndex !== -1) {
+			storedCredits[existingCreditIndex] = credit;
+		} else {
+			storedCredits.push(credit);
+		}
+
+		localStorage.setItem("credits", JSON.stringify(storedCredits));
+	}
+
 	get_ordersAndCredits();
 	closeModal("orders");
 	updateDashboard();
