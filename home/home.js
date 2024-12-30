@@ -346,7 +346,7 @@ let largerSampleOrders = [
 		cid: "CID002",
 		role: "Retail",
 		cost: "150",
-		modeOfPayment: "Cash-on-Delivery",
+		modeOfPayment: "cod",
 		status: "completed",
 		orderDate: "2024-11-25",
 	},
@@ -366,7 +366,7 @@ let largerSampleOrders = [
 		cid: "CID004",
 		role: "Retail",
 		cost: "300",
-		modeOfPayment: "Cash-on-Delivery",
+		modeOfPayment: "cod",
 		status: "completed",
 		orderDate: "2024-10-12",
 	},
@@ -386,7 +386,7 @@ let largerSampleOrders = [
 		cid: "CID006",
 		role: "Retail",
 		cost: "120",
-		modeOfPayment: "Cash-on-Delivery",
+		modeOfPayment: "cod",
 		status: "completed",
 		orderDate: "2024-11-01",
 	},
@@ -416,7 +416,7 @@ let largerSampleOrders = [
 		cid: "CID009",
 		role: "Business",
 		cost: "600",
-		modeOfPayment: "Cash-on-Delivery",
+		modeOfPayment: "cod",
 		status: "placed",
 		orderDate: "2024-12-20",
 	},
@@ -506,7 +506,7 @@ let largerSampleCredits = [
 	},
 ];
 
-// Store the data in localStorage
+// // Store the data in localStorage
 localStorage.setItem("orders", JSON.stringify(largerSampleOrders));
 localStorage.setItem("credits", JSON.stringify(largerSampleCredits));
 
